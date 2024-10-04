@@ -200,7 +200,7 @@ Magazine.prototype.constructor = Magazine;
 console.log(mag1);
  */
 
-// Object Create Method
+/* // Object Create Method
 
 // Define array of functions
 const bookProtos = {
@@ -238,4 +238,56 @@ const book2 = Object.create(bookProtos, {
 });
 
 console.log(book2);
-console.log(book2.getAge());
+console.log(book2.getAge()); */
+
+// Classes
+
+class Book {
+
+    constructor(title, author, year){
+
+        this.title = title;
+        this.author = author;
+        this.year = year;
+
+    }
+
+    // add methods to class
+    getSummary(){
+
+        return `${this.title} was written by ${this.author} in ${this.month}, ${this.year}.`;
+
+    }
+
+    getAge(){
+
+        const years = new Date().getFullYear() - this.year;
+        return `${this.title} is ${years} years old.`;
+
+    }
+
+    revise(newYear){
+
+        this.year = newYear;
+        this.revised = true;
+
+    }
+
+    // create a static method
+    static topBookStore(){
+
+        return `Barnes & Noble`;
+
+    }
+
+}
+
+// Instantiate a Book
+const book1 = new Book('Book One', 'John Doe', '2013');
+
+book1.revise('2018');
+console.log(book1);
+
+ // No instantiation needed for static methods
+ // static methods runs from class 
+ console.log(Book.topBookStore());
