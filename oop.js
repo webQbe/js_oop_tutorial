@@ -240,7 +240,7 @@ const book2 = Object.create(bookProtos, {
 console.log(book2);
 console.log(book2.getAge()); */
 
-// Classes
+/* // Classes
 
 class Book {
 
@@ -290,4 +290,45 @@ console.log(book1);
 
  // No instantiation needed for static methods
  // static methods runs from class 
- console.log(Book.topBookStore());
+ console.log(Book.topBookStore()); */
+
+ // Subclasses
+
+ class Book {
+
+    constructor(title, author, year){
+
+        this.title = title;
+        this.author = author;
+        this.year = year;
+
+    }
+
+    getSummary(){
+
+        return `${this.title} was written by ${this.author} in ${this.month}, ${this.year}.`;
+
+    }
+}
+
+// Create subclass Magazine
+
+class Magazine extends Book {
+
+    constructor(title, author, year, month){
+
+        // call parent constructor with super()
+        super(title, author, year);
+
+        this.month = month;
+        
+    }
+
+}
+
+// Instantiate a Magazine
+const mag1 = new Magazine('Mag One', 'John Doe', '2018', 'Jan');
+console.log(mag1);
+
+// call method from parent constructor
+console.log(mag1.getSummary());
