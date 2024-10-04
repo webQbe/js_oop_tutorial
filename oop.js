@@ -87,8 +87,7 @@ console.log(book1.getSummary());
 // get summary of book2
 console.log(book2.getSummary()); */
 
-
-// Prototypes
+/* // Prototypes
 
 // You can move a constructor method to a prototype when you don't want it in every object you create.
 
@@ -147,5 +146,55 @@ console.log(book2.getAge());
 book2.revise('2018');
 
 // see updated book2
-console.log(book2);
+console.log(book2);  */
 
+// Inheritance
+
+// Book Constructor
+function Book(title, author, year){
+    this.title = title;
+    this.author = author;
+    this.year = year;
+}
+
+
+// getSummary() prototype
+Book.prototype.getSummary = function(){
+
+        return `${this.title} was written by ${this.author} in ${this.month}, ${this.year}.`;
+}
+
+
+// Create Magazine object that inherits Book's properties
+
+// Magazine Constructor
+function Magazine(title, author, year, month) {
+
+    // call Book object 
+    // with title, author, year
+    Book.call(this, title, author, year);
+
+    this.month = month;
+
+}
+
+// Instantiate a Magazine
+const  mag1 = new Magazine('Mag One', 'John Doe', '2018', 'Jan');
+
+// see mag1
+console.log(mag1);
+
+// try to call getSummary for mag1
+// console.log(mag1.getSummary());
+// Uncaught TypeError: mag1.getSummary is not a function
+
+// Inheriting prototype
+Magazine.prototype = Object.create(Book.prototype);
+const  mag2 = new Magazine('Mag Two', 'Jane Doe', '2016', 'Dec');
+
+console.log(mag2.getSummary());
+
+// Changing constructor
+// from Book to Magazine
+Magazine.prototype.constructor = Magazine;
+console.log(mag1);
