@@ -56,8 +56,7 @@ console.log(Object.keys(book1));
 
  */
 
-
-// Constructors
+/* // Constructors
 
 // If we want to duplicate objects we can use constructors
 // constructor is a function
@@ -86,4 +85,67 @@ console.log(book1.title);
 console.log(book1.getSummary());
 
 // get summary of book2
+console.log(book2.getSummary()); */
+
+
+// Prototypes
+
+// You can move a constructor method to a prototype when you don't want it in every object you create.
+
+// Book Constructor
+function Book(title, author, year){
+    this.title = title;
+    this.author = author;
+    this.year = year;
+}
+
+
+// moving getSummary() to prototype
+Book.prototype.getSummary = function(){
+
+        return `${this.title} was written by ${this.author} in ${this.year}.`;
+}
+
+// getAge prototype
+// calculate book's age
+Book.prototype.getAge = function(){
+
+    // get current year from Date - book's year
+    const years = new Date().getFullYear() - this.year;
+
+    return `${this.title} is ${years} years old.`;
+}
+
+
+// Revise prototype
+// Change book year
+Book.prototype.revise = function(newYear){
+
+    this.year = newYear;
+    this.revised = true;
+
+}
+
+
+// Instantiating books
+const book1 = new Book('Book One', 'John Doe', '2013');
+const book2 = new Book('Book Two', 'Jane Doe', '2016');
+
+
+// Call getSummary()
 console.log(book2.getSummary());
+
+// See book2
+// you can see getSummary() is stored in <prototype> section
+console.log(book2);
+
+// get book's age
+console.log(book1.getAge());
+console.log(book2.getAge());
+
+// add revised year
+book2.revise('2018');
+
+// see updated book2
+console.log(book2);
+
